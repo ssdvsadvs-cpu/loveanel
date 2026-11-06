@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&amp;family=Nunito:wght@400;600;800&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<title>Для тебя ❤️</title>
+<style>
+html,body{margin:0;background:#1a0f17}
+*{box-sizing:border-box}
+a{color:#ff8fb8}a:hover{color:#ffb3cf}
+@keyframes floatUp{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:.9}100%{transform:translateY(-110vh) scale(1.1);opacity:0}}
+@keyframes pop{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+</style>
+</helmet>
+<div style="position:relative;min-height:100svh;background:radial-gradient(120% 80% at 50% 0%,#2e1526 0%,#1a0f17 60%);color:#f7eef3;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+<sc-if value="{{ isLetter }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:0;background:#1a0f17 url('photos/letter-bg.jpg') center/cover no-repeat"></div>
+  <div style="position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,rgba(26,15,23,.2),rgba(26,15,23,.5))"></div>
+</sc-if>
+{{ hearts }}
+
+<div style="position:relative;z-index:1;max-width:480px;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;padding:20px 20px calc(20px + env(safe-area-inset-bottom))">
+
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:#c9a9bb;padding:4px 4px 0">
+  <span style="font-family:'Comfortaa',sans-serif;font-weight:700;color:#ff8fb8">М 💗 А</span>
+  <span>{{ stepLabel }}</span>
+</div>
+<div style="height:4px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:10px;overflow:hidden">
+  <div style="height:100%;border-radius:4px;background:linear-gradient(90deg,#ff7aa8,#ffb3cf);width:{{ progress }};transition:width .4s"></div>
+</div>
+
+<main style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px 0">
+
+<sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <img src="memes/1-shy.png" alt="Смущённый мем" style="width:200px;height:200px;object-fit:contain;background:#fff;border-radius:28px;border:3px solid #f3dfe8;box-shadow:0 12px 32px rgba(0,0,0,.45)">
+    <div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ff8fb8">маленький вопрос</div>
+    <h1 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:38px;line-height:1.15">Ты меня любишь?</h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;color:#e2cfda;max-width:320px">Только честно.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;min-height:120px;align-items:flex-start">
+      <button onClick="{{ sayYes }}" style="padding:16px 34px;border:0;border-radius:999px;background:linear-gradient(135deg,#ff6f9f,#ff9fc3);color:#2a0d1c;font-family:'Nunito',sans-serif;font-weight:800;font-size:19px;cursor:pointer;box-shadow:0 8px 24px rgba(255,111,159,.45)" style-hover="filter:brightness(1.08)" style-active="transform:scale(.97)">Да ❤️</button>
+      <button onClick="{{ runAway }}" onMouseEnter="{{ runAway }}" onTouchStart="{{ runAway }}" style="padding:16px 28px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.06);color:#f7eef3;font-family:'Nunito',sans-serif;font-weight:600;font-size:17px;cursor:pointer;transition:transform .25s;transform:{{ noTransform }}">{{ noLabel }}</button>
+    </div>
+    <div style="font-size:13px;color:#9e8393">правильный ответ где-то рядом</div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isHello }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:24px;background:#cbbcc4 url('photos/collage-bg.jpg') center/cover no-repeat;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.5)">
+      <div style="position:absolute;left:5%;top:4%;width:46%;height:24%;transform:rotate(-8deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-1" shape="rect" placeholder="Фото 1" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;right:5%;top:6%;width:44%;height:22%;transform:rotate(4deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-2" shape="rect" placeholder="Фото 2" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:30%;top:22%;width:38%;height:28%;transform:rotate(-1deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35);z-index:2"><image-slot id="photo-3" shape="rect" placeholder="Фото 3" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:6%;top:45%;width:34%;height:28%;transform:rotate(-3deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-4" shape="rect" placeholder="Фото 4" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;right:5%;top:42%;width:32%;height:28%;transform:rotate(5deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-5" shape="rect" placeholder="Фото 5" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:28%;top:56%;width:46%;height:34%;transform:rotate(2deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.4);z-index:3"><image-slot id="photo-6" shape="rect" placeholder="Фото 6" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:4%;bottom:3%;width:28%;height:18%;transform:rotate(-6deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-7" shape="rect" placeholder="Фото 7" style="width:100%;height:100%"></image-slot></div>
+    </div>
+    <h1 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:34px;line-height:1.15">Я так и знал 💗</h1>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#e2cfda;text-wrap:pretty">Анель, сегодня нам 4 месяца. Я собрал для тебя этот маленький сайт: наши истории, наши фото и очень много счастья.</p>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isCounter }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+    <img src="memes/2-smug.png" alt="Довольный котик" style="width:100%;max-width:300px;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:24px;border:3px solid #f3dfe8;box-shadow:0 12px 32px rgba(0,0,0,.45)">
+    <div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ff8fb8">мы вместе уже</div>
+    <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:88px;line-height:1;color:#ff8fb8;font-variant-numeric:tabular-nums">{{ days }}</div>
+    <div style="font-size:20px;font-weight:600;margin-top:-8px">{{ daysLabel }}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%">
+      <div style="padding:14px 6px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)"><div style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums">{{ hours }}</div><div style="font-size:13px;color:#c9a9bb">часов</div></div>
+      <div style="padding:14px 6px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)"><div style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums">{{ minutes }}</div><div style="font-size:13px;color:#c9a9bb">минут</div></div>
+      <div style="padding:14px 6px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)"><div style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums">{{ seconds }}</div><div style="font-size:13px;color:#c9a9bb">секунд</div></div>
+    </div>
+    <p style="margin:0;font-size:15px;color:#c9a9bb">каждая секунда с тобой как подарок с небес&nbsp;&nbsp;</p>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isStory }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    
+    
+    <img src="{{ story.cat }}" alt="Мем" style="width:100%;aspect-ratio:{{ story.ratio }};max-height:52svh;object-fit:{{ story.fit }};object-position:center;background:#fff;border-radius:24px;border:3px solid #f3dfe8;box-shadow:0 12px 32px rgba(0,0,0,.45)">
+    <sc-if value="{{ story.caption }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:-6px;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:20px;color:#ff8fb8">{{ story.caption }}</div>
+    </sc-if><h2 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:32px;line-height:1.15">{{ story.title }}</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#e2cfda;text-wrap:pretty">{{ story.text }}</p>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isLove }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <div style="font-size:64px;line-height:1;animation:beat 1.4s ease-in-out infinite">💗</div>
+    <div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ff8fb8"><br></div>
+    <h2 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:34px;line-height:1.15">Мне нравится в тебе всё</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;width:100%;margin-top:6px">
+      <div style="padding:18px 20px;border-radius:20px;background:rgba(255,143,184,.12);border:1px solid rgba(255,143,184,.3);font-size:18px;font-weight:600;line-height:1.4">То, как ты заботишься обо мне 🫶</div>
+      <div style="padding:18px 20px;border-radius:20px;background:rgba(255,143,184,.12);border:1px solid rgba(255,143,184,.3);font-size:18px;font-weight:600;line-height:1.4">То, как ты говоришь, что любишь меня 💌</div>
+      <div style="padding:18px 20px;border-radius:20px;background:rgba(255,143,184,.12);border:1px solid rgba(255,143,184,.3);font-size:18px;font-weight:600;line-height:1.4">То, как ты меня кусаешь 😼</div>
+      <div style="padding:18px 20px;border-radius:20px;background:rgba(255,143,184,.12);border:1px solid rgba(255,143,184,.3);font-size:18px;font-weight:600;line-height:1.4">То, как ты говоришь моё имя ночью 🌙</div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isPhotos }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <h2 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:30px">Ещё немного нас 📸</h2>
+    <div style="position:relative;width:100%;aspect-ratio:4/5;border-radius:24px;background:#cbbcc4 url('photos/collage-bg-2.jpg') center/cover no-repeat;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.5)">
+      <div style="position:absolute;left:6%;top:5%;width:50%;height:38%;transform:rotate(-6deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-8" shape="rect" placeholder="Фото 8" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;right:5%;top:8%;width:40%;height:32%;transform:rotate(6deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-9" shape="rect" placeholder="Фото 9" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:8%;top:46%;width:40%;height:30%;transform:rotate(3deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35)"><image-slot id="photo-10" shape="rect" placeholder="Фото 10" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;right:6%;top:42%;width:44%;height:36%;transform:rotate(-4deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.4);z-index:2"><image-slot id="photo-11" shape="rect" placeholder="Фото 11" style="width:100%;height:100%"></image-slot></div>
+      <div style="position:absolute;left:30%;bottom:3%;width:40%;height:24%;transform:rotate(-2deg);border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.4);z-index:3"><image-slot id="photo-12" shape="rect" placeholder="Фото 12" style="width:100%;height:100%"></image-slot></div>
+    </div>
+    <p style="margin:0;font-size:16px;color:#e2cfda">Каждый кадр с тобой — мой любимый.</p>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isSong }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <img src="music/cover.jpg" alt="Обложка: Moldanazar — Өзің ғана" style="width:100%;max-width:260px;aspect-ratio:1/1;object-fit:cover;border-radius:50%;border:3px solid #f3dfe8;box-shadow:0 12px 32px rgba(0,0,0,.45)">
+    <div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#ff8fb8">наша песня 🎶</div>
+    <h2 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:30px;line-height:1.2">{{ songTitle }}</h2>
+    <p style="margin:-8px 0 0;font-size:17px;color:#c9a9bb">{{ songArtist }}</p>
+    <audio ref="{{ audioRef }}" src="{{ songUrl }}" onEnded="{{ onEnded }}" onTimeUpdate="{{ onTime }}" preload="metadata"></audio>
+    <div style="width:100%;height:6px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden"><div style="height:100%;background:#ff8fb8;width:{{ songProgress }}"></div></div>
+    <button onClick="{{ toggleSong }}" style="width:72px;height:72px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff6f9f,#ff9fc3);color:#2a0d1c;font-size:24px;cursor:pointer;box-shadow:0 8px 24px rgba(255,111,159,.45)" style-active="transform:scale(.95)">{{ playIcon }}</button>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isLetter }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <div style="width:100%;padding:8px 4px;color:#f7eef3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;text-shadow:0 2px 10px rgba(0,0,0,.7)">
+      <p style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:24px">Моя котёшка,</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">Люблю тебя настолько сильно, что небеса завидуют тебе, а Джульетта тихо курит в сторонке.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">Обожаю, когда ты так искренне говоришь о своих чувствах ко мне, хотя прежде так не делала. Безумно трогает то, что ты пошла на уступки ради меня, хоть и не привыкла так делать. Бескрайне ценю то, что ты всегда думаешь и заботишься обо мне по-своему.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">В первый день нашей встречи я даже не думал, что смогу так сильно к тебе проникнуться, что буду готов отдать всего себя ради тебя и твоего счастья. И до сих пор не верится, что Бог одарил меня такой прекрасной девушкой, как ты, моя котёшка.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;text-wrap:pretty">Во мне столько эмоций, но так мало слов, что даже обидно. Но хочется сказать: спасибо, что любишь меня. И знай, что я буду любить тебя сильнее, чем ты можешь себе представить.</p>
+      <p style="margin:8px 0 0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:18px;color:#ff8fb8">С любовью, Мадияр 💗</p>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isFinal }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <h1 style="margin:0;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:40px;line-height:1.15">Люблю тебя, <span style="color:#ff8fb8">Жаным</span> 💗</h1>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#e2cfda">С 4 месяцами, моя хорошая. Дальше будет только лучше.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%">
+      <sc-for list="{{ finalCats }}" as="c" hint-placeholder-count="6">
+        <img src="{{ c.src }}" alt="{{ c.alt }}" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center bottom;border-radius:16px;border:2px solid #f3dfe8;background:#2e1526">
+      </sc-for>
+    </div>
+    <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:16px;color:#ff8fb8">твой Жинкин лев</div>
+  </div>
+</sc-if>
+
+</main>
+
+<sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:10px;align-items:stretch">
+    <button onClick="{{ next }}" style="padding:18px 24px;border:0;border-radius:999px;background:linear-gradient(135deg,#ff6f9f,#ff9fc3);color:#2a0d1c;font-family:'Nunito',sans-serif;font-weight:800;font-size:18px;cursor:pointer;box-shadow:0 8px 24px rgba(255,111,159,.4)" style-hover="filter:brightness(1.08)" style-active="transform:scale(.98)">{{ nextLabel }}</button>
+    <button onClick="{{ back }}" style="padding:10px;border:0;background:transparent;color:#c9a9bb;font-family:'Nunito',sans-serif;font-size:15px;cursor:pointer" style-hover="color:#ff8fb8">← назад</button>
+  </div>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:860},&quot;songTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Өзің ғана&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Песня&quot;},&quot;songArtist&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Moldanazar&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Песня&quot;},&quot;songUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Песня&quot;}}">
+class Component extends DCLogic {
+  state = { i: 0, now: Date.now(), noX: 0, noY: 0, noTries: 0, playing: false, t: 0 };
+  audioRef = React.createRef();
+  heartsEl = (() => {
+    const h = React.createElement, items = [];
+    for (let k = 0; k < 16; k++) items.push(h('span', { key: k, style: {
+      position: 'absolute', bottom: '-40px', left: (k * 6.3 + (k % 3) * 4) % 100 + '%',
+      fontSize: 12 + (k * 7) % 18, color: k % 2 ? '#ff7aa8' : '#ffb3cf', opacity: 0,
+      animation: `floatUp ${9 + (k * 3) % 8}s linear ${(k * 1.3) % 10}s infinite`
+    } }, '♥'));
+    return h('div', { 'aria-hidden': true, style: { position: 'fixed', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 0 } }, items);
+  })();
+  stories = [
+    { n: '01', title: '02/08 00:54', text: 'Этот день не ты не я не забудем никогда, но тем самым она становится ценным. Но сол кезде суйіскенде.... еееееех, ладно енд', img: 'photos/stop.jpg', photo: true, caption: 'Сенің түрің осындай болған' },
+    { n: '02', title: '12.09.2026', text: 'Родители уехали, и мы впервые ночевали вместе. Ты боялась пустить меня домой, но все ровно были вместе целых 30 часов. ', img: 'photos/kitchen.jpg', photo: true },
+    { n: '03', title: '20-21.10.2026', text: 'Самый классый, самый теплый день этой осени. Все то, что мы делали в тот день до сих пор натягивают улыбку у меня на лице', img: 'memes/7-cuddle.jpg' },
+    { n: '04', title: 'Первый крупный бухичь', text: 'Ты впервые по-настоящему напилась и упала с кровати. Жалко что не помнишь', img: 'memes/6-dog.jpg' }
+  ];
+  order = ['quiz', 'hello', 'counter', 's0', 's1', 's2', 's3', 'love', 'photos', 'song', 'letter'];
+  componentDidMount() {
+    const saved = +localStorage.getItem('anel-v3-page'); if (saved > 0 && saved < this.order.length) this.setState({ i: saved });
+    this.iv = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+  componentWillUnmount() { clearInterval(this.iv); }
+  go(i) { localStorage.setItem('anel-v3-page', i); window.scrollTo(0, 0); this.setState({ i }); }
+  cat(text, k) {
+    const q = `?width=600&height=750&r=${k}`;
+    return text ? `https://cataas.com/cat/says/${encodeURIComponent(text)}${q}&fontSize=50&fontColor=white` : `https://cataas.com/cat${q}`;
+  }
+  plural(n, a, b, c) { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? a : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? b : c; }
+  renderVals() {
+    const s = this.state, key = this.order[s.i], last = this.order.length - 1;
+    const d = Math.max(0, Math.floor((s.now - new Date(2026, 6, 7).getTime()) / 1000));
+    const days = Math.floor(d / 86400), pad = n => String(n).padStart(2, '0');
+    const st = key[0] === 's' && key !== 'song' ? this.stories[+key.slice(1)] : null;
+    const noLabels = ['Нет', 'Точно?', 'Не-а 😼', 'Подумай', 'Котик против', 'Ошибка 404', 'Ну нет же'];
+    const url = this.props.songUrl || 'music/ozin-gana.mp3';
+    return {
+      hearts: this.heartsEl,
+      stepLabel: (s.i + 1) + ' / ' + this.order.length,
+      progress: ((s.i + 1) / this.order.length * 100) + '%',
+      isQuiz: key === 'quiz', isHello: key === 'hello', isCounter: key === 'counter', isStory: !!st,
+      isLove: key === 'love', isPhotos: key === 'photos', isSong: key === 'song', isFinal: key === 'final', isLetter: key === 'letter',
+      showNav: key !== 'quiz',
+      quizCat: this.cat('ну скажи да', 1),
+      sayYes: () => this.go(1),
+      runAway: () => this.setState(p => ({ noTries: p.noTries + 1, noX: Math.round((Math.random() - .5) * 220), noY: Math.round(Math.random() * 120 - 30) })),
+      noTransform: `translate(${s.noX}px,${s.noY}px)`,
+      noLabel: noLabels[s.noTries % noLabels.length],
+      counterCat: this.cat('я посчитал', 2),
+      days, daysLabel: this.plural(days, 'день', 'дня', 'дней') + ' 💞',
+      hours: pad(Math.floor(d % 86400 / 3600)), minutes: pad(Math.floor(d % 3600 / 60)), seconds: pad(d % 60),
+      story: st ? { ...st, cat: st.img || this.cat(st.cat, 10 + s.i), caption: st.caption || false, fit: st.photo ? 'cover' : 'contain', ratio: st.photo ? '4/5' : '1/1' } : { n: '', title: '', text: '', cat: '', caption: false },
+      loveCat: this.cat('', 20),
+      songCat: this.cat('танцуем', 30),
+      songTitle: this.props.songTitle || 'Өзің ғана',
+      songArtist: this.props.songArtist || 'Moldanazar',
+      songUrl: url || undefined, noSong: !url, audioRef: this.audioRef,
+      songProgress: (s.t * 100) + '%', playIcon: s.playing ? '❚❚' : '▶',
+      toggleSong: () => { const a = this.audioRef.current; if (!url) { window.open('https://www.youtube.com/results?search_query=' + encodeURIComponent('Moldanazar Өзің ғана'), '_blank'); return; } if (!a) return; if (a.paused) { a.play(); this.setState({ playing: true }); } else { a.pause(); this.setState({ playing: false }); } },
+      onEnded: () => this.setState({ playing: false, t: 0 }),
+      onTime: e => { const a = e.target; if (a.duration) this.setState({ t: a.currentTime / a.duration }); },
+      finalCats: ['люблю', 'обнимаю', 'целую', 'скучаю', 'моя', 'навсегда'].map((t, k) => ({ src: this.cat(t, 50 + k), alt: 'Котик: ' + t })),
+      nextLabel: s.i === last ? 'Ещё раз сначала 💗' : 'Дальше 💗',
+      next: () => s.i === last ? (this.setState({ noTries: 0, noX: 0, noY: 0 }), this.go(0)) : this.go(s.i + 1),
+      back: () => this.go(Math.max(0, s.i - 1))
+    };
+  }
+}
+</script>
+</body>
+</html>
